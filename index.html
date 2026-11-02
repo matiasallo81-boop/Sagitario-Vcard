@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --yellow-brand: #FFDF00;
+      /* Color calibrado exactamente al fondo de la imagen del logo */
+      --yellow-brand: #FFEA28;
       --red-action: #E63229;
       --red-hover: #C8231A;
       --dark-bg: #2B2B2B;
@@ -26,8 +27,6 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--yellow-brand);
-      background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-      background-size: 16px 16px;
       color: var(--text-main);
       display: flex;
       justify-content: center;
@@ -37,7 +36,7 @@
       overflow-x: hidden;
     }
 
-    /* Preloader corporativo con logo estático y spinner */
+    /* Preloader calibrado con el mismo tono de fondo */
     #preloader {
       position: fixed;
       top: 0;
@@ -60,12 +59,12 @@
       pointer-events: none;
     }
 
-.preloader-logo {
-  width: 170px;
-  height: auto;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-}
+    .preloader-logo {
+      width: 160px;
+      height: auto;
+      object-fit: contain;
+      background-color: transparent;
+    }
 
     .spinner {
       width: 36px;
@@ -228,7 +227,6 @@
       background-color: var(--red-hover);
     }
 
-    /* Botón web: Fondo negro y letras doradas */
     .btn-gold {
       background-color: #000000 !important;
       color: #FFD700 !important;
@@ -255,7 +253,7 @@
 </head>
 <body>
 
-  <!-- Preloader seguro con logo estático y spinner -->
+  <!-- Preloader único: un solo logo y un solo spinner -->
   <div id="preloader">
     <img src="https://lh3.googleusercontent.com/d/18L7-kMCnrxTvJlcMjCGNVfDLgJPTuhfX" alt="Sagitario" class="preloader-logo">
     <div class="spinner"></div>
@@ -263,7 +261,7 @@
 
   <div class="vcard-container" id="cardContainer">
     
-    <!-- 1. Foto de perfil ampliada, Nombre y Puesto -->
+    <!-- 1. Foto de perfil, Nombre y Puesto -->
     <div class="profile-header">
       <div class="avatar-wrapper">
         <img src="https://lh3.googleusercontent.com/d/1HG2IkzXQ3DrYCBxjePLB06DmChEljwFl" alt="Matías Allo" class="avatar">
@@ -274,7 +272,7 @@
 
     <div class="content-section">
       
-      <!-- 2. Agregame + (Enlace universal optimizado para Apple y Android) -->
+      <!-- 2. Agregame + -->
       <a href="#" id="downloadVCard" class="btn btn-primary">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
@@ -300,7 +298,7 @@
         <span class="arrow-icon">›</span>
       </a>
 
-      <!-- 5. Ubicación (Con vínculo directo a Google Maps) -->
+      <!-- 5. Ubicación (Abre Google Maps) -->
       <a href="https://maps.google.com/?q=Entre+Rios+1170+CABA" target="_blank" rel="noopener noreferrer" class="info-card">
         <div class="info-title">
           <span>Ubicación</span>
@@ -318,7 +316,7 @@
         <span class="arrow-icon">›</span>
       </a>
 
-      <!-- 7. Sitio Web (Fondo negro y letras doradas) -->
+      <!-- 7. Sitio Web -->
       <a href="https://www.pintureriasagitario.com.ar" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
         <div class="btn-content">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
@@ -332,7 +330,7 @@
   </div>
 
   <script>
-    // Generador universal vCard compatible con iOS y Android
+    // Generador de vCard local compatible con iOS y Android
     document.getElementById('downloadVCard').addEventListener('click', function(e) {
       e.preventDefault();
       const vcardData = [
@@ -359,23 +357,23 @@
       document.body.removeChild(link);
     });
 
-    // Control estricto y blindado del preloader a exactamente 2 segundos
+    // Desaparición estricta del preloader a los 2 segundos exactos
     window.addEventListener('load', function() {
       setTimeout(function() {
         const preloader = document.getElementById('preloader');
         const card = document.getElementById('cardContainer');
-        if(preloader) preloader.classList.add('hidden');
-        if(card) card.classList.add('loaded');
+        if (preloader) preloader.classList.add('hidden');
+        if (card) card.classList.add('loaded');
       }, 2000);
     });
 
-    // Respaldo de seguridad absoluto por si acaso
+    // Respaldo de seguridad anti-congelamiento
     setTimeout(function() {
       const preloader = document.getElementById('preloader');
       const card = document.getElementById('cardContainer');
-      if(preloader && !preloader.classList.contains('hidden')) {
+      if (preloader && !preloader.classList.contains('hidden')) {
         preloader.classList.add('hidden');
-        if(card) card.classList.add('loaded');
+        if (card) card.classList.add('loaded');
       }
     }, 2200);
   </script>
